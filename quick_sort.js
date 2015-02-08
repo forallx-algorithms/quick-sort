@@ -19,14 +19,44 @@ function quickSort(a, choosePivotFn){
     return s;
   }
 
-  // Function for partitioning an array
+  // Swaps two elements in a given array
+  // @param {Array.<Integer>} a
+  // @param {Integer} fi Index of the first element
+  // @param {Integer} si Index of the second element
+  var swap = function(a, fi, si){
+    var fe = a[fi];
+    var se = a[si];
+
+    a[fi]=se; a[si]=fe;
+  }
+
+  // Partition an array
   // @param {Array.<Integer>} a
   // @param {Integer} p Pivot point
   // @param {Integer} s Start bound
   // @param {Integer} e End bound
-  // @return {Array.<Array>}
+  // @return {Array.<Array>} First element of an array is a first partition, second is second
   var partition = function(a, p, s, e){
-    return [[0,0],[1,1]];
+    if(p>s){
+      swap(a,p,s);
+      p=s;
+    }
+
+    var i = s+1;
+
+    for(j = s+1; j<=e; j++){
+      if(a[j]<a[p]){
+        swap(a,j,i);
+        i++;
+      }
+    }
+
+    swap(a,p,i-1);
+
+    return [
+      [s,i-1],
+      [i,e]
+    ];
   }
 
   // Main recursion loop
