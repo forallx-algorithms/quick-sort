@@ -65,7 +65,7 @@ function quickSort(a, choosePivotFn){
   // @param {Integer} e End bound
   // @return {Array.<Integer>}
   var sort = function(a, s, e){
-    if((e-s)<2){
+    if(((e-s)+1)<2){
       return a;
     }else{
       var pp = choosePivot(a,s,e);
@@ -77,4 +77,31 @@ function quickSort(a, choosePivotFn){
       return a;
     }
   }
+
+  return sort(a, 0, a.length-1);
 }
+
+
+var test = [];
+
+test = [];
+console.log("Case 1:", quickSort(test).toString()==[].toString());
+
+test = [1,2];
+console.log("Case 2:", quickSort(test).toString()==[1,2].toString(), quickSort(test));
+
+test = [2,1];
+console.log("Case 3:", quickSort(test).toString()==[1,2].toString(), quickSort(test));
+
+test = [1,2,3];
+console.log("Case 4:", quickSort(test).toString()==[1,2,3].toString(), quickSort(test));
+
+test = [3,2,1];
+console.log("Case 5:", quickSort(test).toString()==[1,2,3].toString(), quickSort(test));
+
+test = [3,1,2];
+console.log("Case 6:", quickSort(test).toString()==[1,2,3].toString(), quickSort(test));
+
+test = [5,8,9,0,-1,3,2,4];
+console.log("Case 7:", quickSort(test).toString()==[-1,0,2,3,4,5,8,9].toString(), quickSort(test));
+
