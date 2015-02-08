@@ -19,6 +19,8 @@ function quickSort(a, choosePivotFn){
     return s;
   }
 
+  choosePivot = choosePivotFn ? choosePivotFn : choosePivot;
+
   // Swaps two elements in a given array
   // @param {Array.<Integer>} a
   // @param {Integer} fi Index of the first element
@@ -42,9 +44,9 @@ function quickSort(a, choosePivotFn){
       p=s;
     }
 
-    var i = s+1;
+    var i = p+1, j;
 
-    for(j = s+1; j<=e; j++){
+    for(j = i; j<=e; j++){
       if(a[j]<a[p]){
         swap(a,j,i);
         i++;
