@@ -55,9 +55,11 @@ function quickSort(a, choosePivotFn){
 
     swap(a,p,i-1);
 
+    p=i-1
+
     return [
-      [s,i-1],
-      [i,e]
+      [s, Math.max(p-1,s)],
+      [Math.min(i,e), e]
     ];
   }
 
@@ -83,6 +85,10 @@ function quickSort(a, choosePivotFn){
   return sort(a, 0, a.length-1);
 }
 
+var choosePivotEnd = function(a,s,e){
+  return e;
+};
+
 
 var test = [];
 
@@ -99,11 +105,11 @@ test = [1,2,3];
 console.log("Case 4:", quickSort(test).toString()==[1,2,3].toString(), quickSort(test));
 
 test = [3,2,1];
-console.log("Case 5:", quickSort(test).toString()==[1,2,3].toString(), quickSort(test));
+console.log("Case 5:", quickSort(test, choosePivotEnd).toString()==[1,2,3].toString(), quickSort(test, choosePivotEnd));
 
 test = [3,1,2];
 console.log("Case 6:", quickSort(test).toString()==[1,2,3].toString(), quickSort(test));
 
 test = [5,8,9,0,-1,3,2,4];
-console.log("Case 7:", quickSort(test).toString()==[-1,0,2,3,4,5,8,9].toString(), quickSort(test));
+console.log("Case 7:", quickSort(test, choosePivotEnd).toString()==[-1,0,2,3,4,5,8,9].toString(), quickSort(test, choosePivotEnd));
 
