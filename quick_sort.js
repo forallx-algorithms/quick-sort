@@ -89,6 +89,28 @@ var choosePivotEnd = function(a,s,e){
   return e;
 };
 
+var choosePivotMiddle = function(a,s,e){
+  var x = s,
+    y = e,
+    z = s+Math.floor((e-s)/2);
+
+  z = Math.min(Math.max(z, s), e);
+
+  if(a[x]>=a[y]){
+    if(a[z]>=a[y]){
+      return a[x]>=a[z] ? z : x;
+    }else{
+      return y;
+    }
+  }else{
+    if(a[z]>=a[x]){
+      return a[z]>=a[y] ? y : z;
+    }else{
+      return x;
+    }
+  }
+};
+
 
 var test = [];
 
@@ -111,5 +133,5 @@ test = [3,1,2];
 console.log("Case 6:", quickSort(test).toString()==[1,2,3].toString(), quickSort(test));
 
 test = [5,8,9,0,-1,3,2,4];
-console.log("Case 7:", quickSort(test, choosePivotEnd).toString()==[-1,0,2,3,4,5,8,9].toString(), quickSort(test, choosePivotEnd));
+console.log("Case 7:", quickSort(test, choosePivotMiddle).toString()==[-1,0,2,3,4,5,8,9].toString(), quickSort(test, choosePivotEnd));
 
